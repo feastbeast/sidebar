@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu should render correctly 1`] = `
+<a
+  target="_blank"
+>
+  <div
+    className="btns"
+  >
+    <span
+      className="buttonText"
+    >
+        VIEW MENU  
+    </span>
+    <Icon
+      className="icons menuIcon"
+      right={true}
+    >
+      restaurant
+    </Icon>
+  </div>
+</a>
+`;

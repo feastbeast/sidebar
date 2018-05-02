@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GMap should render correctly 1`] = `
+<div
+  className="staticMap"
+>
+  <iframe
+    allowFullScreen={true}
+    frameBorder="0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=place_id:1234"
+    style={
+      Object {
+        "border": 0,
+      }
+    }
+  />
+</div>
+`;

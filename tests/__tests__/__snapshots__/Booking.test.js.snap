@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking should render correctly 1`] = `
+<a
+  href="http://www.google.com"
+  target="_blank"
+>
+  <div
+    className="btns"
+  >
+    <span
+      className="buttonText"
+    >
+        BOOK WITH OPENTABLE  
+    </span>
+    <Icon
+      className="icons bookingIcon"
+      right={true}
+    >
+      event_available
+    </Icon>
+  </div>
+</a>
+`;

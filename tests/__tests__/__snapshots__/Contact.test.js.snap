@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact should render correctly 1`] = `
+<div
+  className="contact"
+>
+  <Modal
+    actions={
+      Array [
+        <Button
+          flat={true}
+          modal="close"
+          node="button"
+          waves="light"
+        >
+          Close
+        </Button>,
+      ]
+    }
+    bottomSheet={false}
+    className="mapModal"
+    fixedFooter={false}
+    modalOptions={Object {}}
+    trigger={
+      <div
+        className="address row"
+      >
+        <Icon
+          className="contactIcon icons"
+        >
+          location_on
+        </Icon>
+        <span
+          className="contactText"
+        >
+          944 Market St
+        </span>
+      </div>
+    }
+  >
+    <iframe
+      allowFullScreen={true}
+      frameBorder="0"
+      height="500px"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=place_id:1234"
+      style={
+        Object {
+          "border": 0,
+        }
+      }
+      width="1000px"
+    />
+  </Modal>
+  <div
+    className="phone row"
+  >
+    <a
+      href="tel:888-8888"
+      target="blank"
+    >
+      <Icon
+        className="contactIcon icons"
+      >
+        phone
+      </Icon>
+      <span
+        className="contactText"
+      >
+        888-8888
+      </span>
+    </a>
+  </div>
+  <div
+    className="website row"
+  >
+    <a
+      href="google.com"
+      target="blank"
+    >
+      <Icon
+        className="contactIcon icons"
+      >
+        web
+      </Icon>
+      <span
+        className="contactText"
+      >
+        google.com
+      </span>
+    </a>
+  </div>
+  <div
+    className="directions row"
+  >
+    <a
+      href="https://www.google.com/maps/dir/?api=1&destination=Hack+Reactor&destination_place_id=1234"
+      target="blank"
+    >
+      <Icon
+        className="contactIcon icons"
+      >
+        directions
+      </Icon>
+      <span
+        className="contactText"
+      >
+        Get Directions
+      </span>
+    </a>
+  </div>
+</div>
+`;
