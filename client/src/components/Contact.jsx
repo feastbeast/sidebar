@@ -9,9 +9,10 @@ export default class Contact extends React.Component {
   render() {
 
     let tel = `tel:${this.props.phone}`;
+    
     let store = this.props.name.split(' ').join('+');
-    let navLink =`https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=${this.props.lat},${this.props.lat}`;
-    let modalLink= `https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=${this.props.lat},${this.props.lat}`;
+    let navLink =`https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=${this.props.lat},${this.props.lng}`;
+    let modalLink= `https://www.google.com/maps/embed/v1/place?key=AIzaSyDfVc7Wl0xQOdHnSm30Yk2lZtcBTPEZtjM&q=${this.props.lat},${this.props.lng}`;
     
     return (
       <div className="contact" style={{content: {left: "0px", "margin-left": "0px"}}}>

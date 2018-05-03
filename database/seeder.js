@@ -1,14 +1,15 @@
 // const request = require('request');
 
-const faker = require('faker');
-const initData = require('./195-Zagat-AllData.json');
+//const faker = require('faker');
+//const initData = require('./millionRecord.json');
+//const milData = require('./millionRecord.json');
 // const rp = require('request-promise')
 // const fs = require('fs');
-const Places = require('./index.js');
-const Promise = require('bluebird');
-const mongoose = require('mongoose');
+// const Places = require('./index.js');
+// const Promise = require('bluebird');
+// const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database/apateez-sidebar');
+// mongoose.connect('mongodb://database/apateez-sidebar');
 
 
 // getFullData = (places) => {
@@ -53,51 +54,44 @@ mongoose.connect('mongodb://database/apateez-sidebar');
 
 
 
-getFullData = () => {
-  let counter = 1;
-      console.log('GET FULL DATA CALLED')
-  let seedData = () => {
-    var name = faker.company.companyName();
-    let temp = {
-      id: counter.toString(),
-      name: name,
-      menu_url: 'http://google.com',
-      address: `${faker.address.streetAddress()}, San Francisco, CA ${faker.address.zipCode()}, USA`,
-      location: "https://maps.google.com/?cid="+counter.toString(),
-      url: "www."+name.split(" ")[0]+".com",
-      phone: faker.phone.phoneNumberFormat(1),
-      hours: [
-          "Monday: 11:30 AM – 2:30 PM, 5:30 – 9:30 PM",
-          "Tuesday: 11:30 AM – 2:30 PM, 5:30 – 9:30 PM",
-          "Wednesday: 11:30 AM – 2:30 PM, 5:30 – 9:30 PM",
-          "Thursday: 11:30 AM – 2:30 PM, 5:30 – 9:30 PM",
-          "Friday: 11:30 AM – 9:30 PM",
-          "Saturday: 11:30 AM – 9:30 PM",
-          "Sunday: 11:30 AM – 9:30 PM"
-        ],
-      coords: {
-        lat: faker.address.latitude(),
-        lng: faker.address.longitude()
-      }
-    };
-    console.log(temp)
+// getFullData = (places) => {
+//   let counter = 0;
+//       //console.log('GET FULL DATA CALLED')
+//   let seedData = () => {
+//     let temp = {
+//       id: places[counter].id,
+//       name: places[counter].name,
+//       menu_url: places[counter].menu_url,
+//       address: places[counter].address,
+//       location: places[counter].location,
+//       url: places[counter].url,
+//       phone: places[counter].phone,
+//       hours: places[counter].hours,
+//       coords: {
+//         lat: places[counter].coords.lat,
+//         lng: places[counter].coords.lng
+//       }
+//     };
+//     console.log(temp)
 
-    Places.create(temp, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        counter++;
-        if (counter < 10000000) {
-          seedData();
-        } else {
-          return;
-        }
-      }
-    });
-  };
-  seedData();
-};
+//     Places.create(temp, (err, data) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         counter++;
+//         if (counter < 10) {
+//           seedData();
+//         } else {
+//           return;
+//         }
+//       }
+//     });
+//   };
+//   seedData();
+// };
 
-getFullData();
+// getFullData(milData);
 
-module.exports = getFullData;
+// module.exports = getFullData;
+
+//mongoimport --jsonArray -d apateez-sidebar -c places --file millionRecord.json --numInsertionWorkers 8
