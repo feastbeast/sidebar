@@ -44,3 +44,6 @@ const generateFullListJsonFile = () => {
   }
 };
 generateFullListJsonFile();
+
+// mongoimport --jsonArray -d apateez-sidebar -c places --file tenRecord.json --numInsertionWorkers 8
+
