@@ -1,8 +1,7 @@
 // const request = require('request');
-
-//const faker = require('faker');
-//const initData = require('./millionRecord.json');
-//const milData = require('./millionRecord.json');
+// const faker = require('faker');
+// const initData = require('./millionRecord.json');
+// const milData = require('./millionRecord.json');
 // const rp = require('request-promise')
 // const fs = require('fs');
 // const Places = require('./index.js');
@@ -24,7 +23,8 @@
 //       location: places[counter].result.url,
 //       url: places[counter].result.website,
 //       phone: places[counter].result.international_phone_number,
-//       hours: places[counter].result.opening_hours ? places[counter].result.opening_hours.weekday_text : null,
+//       hours: places[counter].result.opening_hours ? places[counter].result.
+//       opening_hours.weekday_text : null,
 //       coords: {
 //         lat: places[counter].result.geometry.location.lat,
 //         lng: places[counter].result.geometry.location.lng
@@ -49,10 +49,6 @@
 // };
 
 // getFullData(initData);
-
-
-
-
 
 // getFullData = (places) => {
 //   let counter = 0;
@@ -94,4 +90,5 @@
 
 // module.exports = getFullData;
 
-//mongoimport --jsonArray -d apateez-sidebar -c places --file millionRecord.json --numInsertionWorkers 8
+// mongoimport --jsonArray -d apateez-sidebar -c places --file millionRecord.json --num
+// InsertionWorkers 8
