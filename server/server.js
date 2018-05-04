@@ -28,14 +28,34 @@ app.get('/restaurants/:id', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 })
 
-app.get('/api/restaurants/:id', function(req, res) {
-  let q = Places.findOne({id: req.params.id});
+// app.get('/api/restaurants/:id', function(req, res) {
+//   let q = Places.findOne({id: req.params.id});
 
-  q.exec((err, place) => {
-    if (err) { console.log(err) }
-    //console.log('PLACE: ', place)
-    res.send(place);
-  });
+//   q.exec((err, place) => {
+//     if (err) { console.log(err) }
+//     //console.log('PLACE: ', place)
+//     res.send(place);
+//   });
+// });
+
+
+//get data from from postgressql
+app.get('/api/restaurants/:id', function (req, res) {
+ client.connect();
+     const query = {
+       // give the query a unique name
+       name: 'fetch-user',
+       text: 'SELECT * FROM apateezside WHERE id = $1',
+       values: [req.params.id]
+     }
+     client.query(query,function(err,result) {
+          if(err){
+             res.status(400).send(err);
+          }else{
+            res.status(200).send(result.rows[0]);
+          }
+          client.end();
+     });  
 });
 
 app.listen(port, () => {
