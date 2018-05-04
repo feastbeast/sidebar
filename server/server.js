@@ -5,13 +5,18 @@ const app = express();
 const port = process.env.PORT || 3001;
 const bodyParser = require('body-parser');
 const Places = require('../database/index.js');
-const { Client } = require('pg');
-const client = new Client({
+const { Client, Pool } = require('pg');
+const pgp = require('pg-promise')();
+const connectionObj= {
   user: 'yogitasheth',
   host: 'localhost',
   database: 'apateezside',
   port: 5432
-});
+}
+const db = pgp(connectionObj);
+const pool = new Pool(connectionObj);
+const client = new Client(connectionObj);
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -27,7 +32,7 @@ app.use('/restaurants', express.static(path.join(__dirname, '../client/dist')));
 app.get('/restaurants/:id', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 })
-
+//MongoDB
 // app.get('/api/restaurants/:id', function(req, res) {
 //   let q = Places.findOne({id: req.params.id});
 
@@ -40,22 +45,43 @@ app.get('/restaurants/:id', function(req, res) {
 
 
 //get data from from postgressql
+// app.get('/api/restaurants/:id', function (req, res) {
+//      const query = {
+//        // give the query a unique name
+//        name: 'fetch-user',
+//        text: 'SELECT * FROM apateezside WHERE id = $1',
+//        values: [req.params.id]
+//      }
+//      client.connect();
+//      client.query(query,function(err,result) {
+//           if(err){
+//             //client.end();
+//              res.status(400).send(err);
+//           }else{
+//             //client.end();
+//             res.status(200).send(result.rows[0]);
+//           }
+//      });  
+// });
+
+
 app.get('/api/restaurants/:id', function (req, res) {
- client.connect();
-     const query = {
+const query = {
        // give the query a unique name
        name: 'fetch-user',
        text: 'SELECT * FROM apateezside WHERE id = $1',
        values: [req.params.id]
      }
-     client.query(query,function(err,result) {
-          if(err){
-             res.status(400).send(err);
-          }else{
-            res.status(200).send(result.rows[0]);
-          }
-          client.end();
-     });  
+  db.one(query)
+    .then(result => {
+        // user found;
+        console.log(result)
+        res.status(200).send(result);
+    })
+    .catch(error => {
+        // error;
+        res.status(400).send(error);    
+    }); 
 });
 
 app.listen(port, () => {

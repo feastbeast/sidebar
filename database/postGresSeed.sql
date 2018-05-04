@@ -1,4 +1,4 @@
-//psql -U yogitasheth apateezside -f /Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/postGresSeed.sql
+-- psql -U yogitasheth apateezside -f /Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/postGresSeed.sql
 
 \CONNECT apateezside;
 
@@ -19,4 +19,4 @@ CREATE TABLE apateezside (
 );
 
 COPY apateezside
-FROM '/Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/smallList.csv' DELIMITER '|' csv;
+FROM '/Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/tenMillionList.csv' DELIMITER '|' csv;

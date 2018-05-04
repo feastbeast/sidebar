@@ -45,7 +45,7 @@ export default class Hours extends React.Component {
         <div className="wrap-collabsible">
           <Icon className="contactIcon schedule icons">schedule</Icon>
           <input id="collapsible" className="toggle" type="checkbox" />
-          <label forhtml="collapsible" className="lbl-toggle">{this.state.newHours[0]}</label>
+          <label htmlFor="collapsible" className="lbl-toggle">{this.state.newHours[0]}</label>
             <div className="collapsible-content">
               <div className="content-inner">
                 {this.state.newHours.slice(1).map((day) => {

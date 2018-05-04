@@ -5,10 +5,10 @@ const faker = require('faker');
 // const dataType = 'smallList.json'
 
 //psql -U yogitasheth apateez_sidebar -c “COPY places FROM ‘/Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/smallList.csv’ DELIMITER ‘|';”
-const fileType = 'smallList.csv'
+const fileType = 'tenMillionList.csv'
 
 // const entryNum = 10000000;
-const entryNum = 10; // For test
+const entryNum = 10000000; // For test
 
 const createEntry = (counter) => {
   // Create one photo array

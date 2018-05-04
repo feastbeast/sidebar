@@ -28,4 +28,6 @@ package-lock.json
 *big and small data files
 database/smallList.csv
 database/tenRecord.json
+database/tenMillionList.csv
+database/tenMillionRecord.json
 

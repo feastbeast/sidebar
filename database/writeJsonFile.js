@@ -1,14 +1,14 @@
 const fs = require('fs');
 const faker = require('faker');
 
-fs.appendFileSync('./tenRecord.json', '[', function (err) {
+fs.appendFileSync('./tenMillionRecord.json', '[', function (err) {
       if (err) throw err;
       console.log('Saved! - [');
       });
 
 let generateFullListJsonFile = () => {
 
-  for (let counter = 0; counter < 10; counter++) {
+  for (let counter = 0; counter < 10000000; counter++) {
     var name = faker.company.companyName();
     let temp = {
       id: counter.toString(),
@@ -31,13 +31,13 @@ let generateFullListJsonFile = () => {
       coordslng: faker.address.longitude()
       
     };
-     if(counter < 9){
-        fs.appendFileSync('./tenRecord.json', JSON.stringify(temp)+',\n', function (err) {
+     if(counter < 9999999){
+        fs.appendFileSync('./tenMillionRecord.json', JSON.stringify(temp)+',\n', function (err) {
           if (err) throw err;
             console.log('Saved!', counter);
         });
      }else{
-        fs.appendFileSync('./tenRecord.json', JSON.stringify(temp)+']', function (err) {
+        fs.appendFileSync('./tenMillionRecord.json', JSON.stringify(temp)+']', function (err) {
           if (err) throw err;
             console.log('Saved!', counter);
         });
