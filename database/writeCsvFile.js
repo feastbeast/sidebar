@@ -19,7 +19,7 @@ const createEntry = (counter) => {
       const menu_url =  'http://google.com';
       const address = `${faker.address.streetAddress()}, San Francisco, CA ${faker.address.zipCode()}, USA`;
       const location = "https://maps.google.com/?cid="+counter.toString();
-      const url = "www."+fakename.split(" ")[0]+".com";
+      const url = "www."+(fakename.split(" ")[0]).replace(/(^,)|(,$)/g, "")+".com";
       const phone = faker.phone.phoneNumberFormat(1);
       const hours = [
           "Monday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM",

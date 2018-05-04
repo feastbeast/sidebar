@@ -16,7 +16,7 @@ let generateFullListJsonFile = () => {
       menu_url: 'http://google.com',
       address: `${faker.address.streetAddress()}, San Francisco, CA ${faker.address.zipCode()}, USA`,
       location: "https://maps.google.com/?cid="+counter.toString(),
-      url: "www."+name.split(" ")[0]+".com",
+      url: "www."+(name.split(" ")[0]).replace(/(^,)|(,$)/g, "")+".com",
       phone: faker.phone.phoneNumberFormat(1),
       hours: [
           "Monday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM",
