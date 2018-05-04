@@ -1,14 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const bodyParser = require('body-parser');
+const Places = require('../database/index.js');
+const pgp = require('pg-promise')();
+// const { Client, Pool } = require('pg');
 
 const app = express();
 const port = process.env.PORT || 3001;
-const bodyParser = require('body-parser');
-const Places = require('../database/index.js');
-// const { Client, Pool } = require('pg');
-const pgp = require('pg-promise')();
-
 const connectionObj = {
   user: 'yogitasheth',
   host: 'localhost',
@@ -29,7 +28,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/restaurants', express.static(path.join(__dirname, '../client/dist')));
-
 
 app.get('/restaurants/:id', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
@@ -57,15 +55,12 @@ app.get('/restaurants/:id', (req, res) => {
 //      client.connect();
 //      client.query(query,function(err,result) {
 //           if(err){
-//             //client.end();
 //              res.status(400).send(err);
 //           }else{
-//             //client.end();
 //             res.status(200).send(result.rows[0]);
 //           }
 //      });
 // });
-
 
 app.get('/api/restaurants/:id', (req, res) => {
   const query = {
@@ -76,12 +71,10 @@ app.get('/api/restaurants/:id', (req, res) => {
   };
   db.one(query)
     .then((result) => {
-      // user found;
       console.log(result);
       res.status(200).send(result);
     })
     .catch((error) => {
-      // error;
       res.status(400).send(error);
     });
 });

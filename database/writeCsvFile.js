@@ -5,15 +5,12 @@ const faker = require('faker');
 // const dataType = 'smallList.json'
 
 const fileType = 'tenMillionList.csv';
-
 const entryNum = 10000000;
-
 const createEntry = (counter) => {
-
   const fakename = faker.company.companyName();
   const id = counter;
   const name = fakename;
-  const menu_url = 'http://google.com';
+  const menuUrl = 'http://google.com';
   const address = `${faker.address.streetAddress()}, San Francisco, CA ${faker.address.zipCode()}, USA`;
   const location = `https://maps.google.com/?cid=${counter.toString()}`;
   const url = `www.${(fakename.split(' ')[0]).replace(/(^,)|(,$)/g, '')}.com`;
@@ -30,7 +27,7 @@ const createEntry = (counter) => {
   const coordslat = faker.address.latitude();
   const coordslng = faker.address.longitude();
 
-  const obj = `${id}|${name}|${menu_url}|${address}|${location}|${url}|${phone}|"{${hours}}"|${coordslat}|${coordslng}`;
+  const obj = `${id}|${name}|${menuUrl}|${address}|${location}|${url}|${phone}|"{${hours}}"|${coordslat}|${coordslng}`;
   return obj;
 };
 
