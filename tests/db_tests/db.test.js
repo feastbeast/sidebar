@@ -1,14 +1,7 @@
 const db = require('../../database/index.js');
 
-let place_id = 'ChIJIbtvA4qAhYARdnwerOi-f4I';
+let place_id = '2';
 
-
-test('the full dataset is a JSON array', () => {
-  expect.assertions(1);
-  return db.find().then((data) => {
-    expect(Array.isArray(data)).toBe(true);
-  });
-});
 
 test('the response data contains an array for the place hours', () => {
   expect.assertions(1);
