@@ -52,6 +52,7 @@ const generateJSON = () => {
 };
 
 generateJSON();
+module.exports = createEntry;
 
 // psql -U yogitasheth apateez_sidebar -c “COPY places FROM ‘/Users/
 // yogitasheth/desktop/feastbeastsidebar/sidebar/database/smallList.csv’ DELIMITER ‘|';”

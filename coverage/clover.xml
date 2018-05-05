@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1525486166381" clover="3.2.0">
-  <project timestamp="1525486166381" name="All files">
-    <metrics statements="18" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2" elements="22" coveredelements="17" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1">
+<coverage generated="1525543731739" clover="3.2.0">
+  <project timestamp="1525543731739" name="All files">
+    <metrics statements="50" coveredstatements="47" conditionals="4" coveredconditionals="3" methods="7" coveredmethods="5" elements="61" coveredelements="55" complexity="0" loc="50" ncloc="50" packages="1" files="2" classes="2">
       <file name="index.js" path="/Users/yogitasheth/Desktop/feastbeastsidebar/sidebar/database/index.js">
         <metrics statements="18" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -22,6 +22,41 @@
         <line num="43" count="0" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
+      </file>
+      <file name="writeCsvFile.js" path="/Users/yogitasheth/Desktop/feastbeastsidebar/sidebar/database/writeCsvFile.js">
+        <metrics statements="32" coveredstatements="32" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="39" type="stmt"/>
+        <line num="11" count="39" type="stmt"/>
+        <line num="12" count="39" type="stmt"/>
+        <line num="13" count="39" type="stmt"/>
+        <line num="14" count="39" type="stmt"/>
+        <line num="15" count="39" type="stmt"/>
+        <line num="16" count="39" type="stmt"/>
+        <line num="17" count="39" type="stmt"/>
+        <line num="18" count="39" type="stmt"/>
+        <line num="27" count="39" type="stmt"/>
+        <line num="28" count="39" type="stmt"/>
+        <line num="30" count="39" type="stmt"/>
+        <line num="31" count="39" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="36" type="stmt"/>
+        <line num="45" count="36" type="stmt"/>
+        <line num="47" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
       </file>
     </metrics>
   </project>
