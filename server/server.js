@@ -1,4 +1,4 @@
-require('../newrelic');
+const newrelic = require('newrelic'); 
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -52,40 +52,38 @@ app.get('/restaurants/:id', (req, res) => {
 //     res.send(place);
 //   });
 // });
+var getRestaurant = (req, res) => {
+  let id = req.params.id;
+  const query = {
+    // give the query a unique name
+    name: 'fetch-user',
+    text: 'SELECT * FROM apateezside WHERE id = $1',
+    values: [id],
+  };
+  db.one(query)
+    .then((result) => {
+      console.log("db "+ result);
 
-var getRestaurant = (req, res) => {
-  const query = {
-    // give the query a unique name
-    name: 'fetch-user',
-    text: 'SELECT * FROM apateezside WHERE id = $1',
-    values: [req.params.id],
-  };
-  db.one(query)
-    .then((result) => {
-      console.log(result);
-      res.status(200).send(result);
-    })
-    .catch((error) => {
-      res.status(400).send(error);
-    });
-}
-var getRestaurant = (req, res) => {
-  const query = {
-    // give the query a unique name
-    name: 'fetch-user',
-    text: 'SELECT * FROM apateezside WHERE id = $1',
-    values: [req.params.id],
-  };
-  db.one(query)
-    .then((result) => {
-      console.log(result);
+      client.setex(id, 3600, JSON.stringify(result));
       res.status(200).send(result);
     })
     .catch((error) => {
       res.status(400).send(error);
     });
 };
-app.get('/api/restaurants/:id', getRestaurant);
+var getCache = (req, res) => {
+  let id = req.params.id;
+  client.get(id, (err, result) => {
+    if (result) {
+      console.log("cached " + result )
+      res.send(result);
+    } else {
+      getRestaurant(req, res);
+    }
+  });
+
+}
+app.get('/api/restaurants/:id', getCache);
 
 app.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
