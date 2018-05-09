@@ -1,4 +1,4 @@
-const newrelic = require('newrelic'); 
+const newrelic = require('newrelic');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -8,14 +8,15 @@ const pgp = require('pg-promise')();
 // const { Client, Pool } = require('pg');
 
 const app = express();
-var redis = require('redis');
-var client = redis.createClient();
-client.on('ready',function() {
- console.log("Redis is ready");
+const redis = require('redis');
+
+const client = redis.createClient();
+client.on('ready', () => {
+  console.log('Redis is ready');
 });
 
-client.on('error',function() {
- console.log("Error in Redis");
+client.on('error', () => {
+  console.log('Error in Redis');
 });
 const port = process.env.PORT || 3001;
 const connectionObj = {
@@ -52,8 +53,8 @@ app.get('/restaurants/:id', (req, res) => {
 //     res.send(place);
 //   });
 // });
-var getRestaurant = (req, res) => {
-  let id = req.params.id;
+const getRestaurant = (req, res) => {
+  const id = req.params.id;
   const query = {
     // give the query a unique name
     name: 'fetch-user',
@@ -62,7 +63,7 @@ var getRestaurant = (req, res) => {
   };
   db.one(query)
     .then((result) => {
-      console.log("db "+ result);
+      console.log(`db ${result}`);
 
       client.setex(id, 3600, JSON.stringify(result));
       res.status(200).send(result);
@@ -71,18 +72,17 @@ var getRestaurant = (req, res) => {
       res.status(400).send(error);
     });
 };
-var getCache = (req, res) => {
-  let id = req.params.id;
+const getCache = (req, res) => {
+  const id = req.params.id;
   client.get(id, (err, result) => {
     if (result) {
-      console.log("cached " + result )
+      console.log(`cached ${result}`);
       res.send(result);
     } else {
       getRestaurant(req, res);
     }
   });
-
-}
+};
 app.get('/api/restaurants/:id', getCache);
 
 app.listen(port, () => {
