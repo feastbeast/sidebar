@@ -12,19 +12,9 @@ http.globalAgent.maxSockets = Infinity;
 http.globalAgent.keepAlive = true;
 http.globalAgent.maxFreeSockets = Infinity;
 const app = express();
+app.disable('etag').disable('x-powred-by');
 var server = http.createServer(app); 
 const redis = require('redis');
-// var express = require('express');
-// var app = express();
-// var server = app.listen(5001);
-
-// server.listen(3000);
-
-// server.on('connection', function(socket) {
-//   console.log("A new connection was made by a client.");
-//   socket.setTimeout(30 * 1000); 
-//   // 30 second timeout. Change this as you see fit.
-// })
 
 const client = redis.createClient();
 client.on('ready', () => {
@@ -83,7 +73,7 @@ const getRestaurant = (req, res) => {
     .then((result) => {
       client.setex(id, 3600, JSON.stringify(result));
       res.status(200).send(result);
-      //res.flush();
+      res.flush();
     })
     .catch((error) => {
       res.status(400).send(error);
@@ -95,7 +85,7 @@ const getCache = (req, res) => {
     if (result) {
       //console.log(`cached ${result}`);
       res.send(result);
-      //res.flush();
+      res.flush();
       //res.end();
     } else {
       getRestaurant(req, res);
@@ -104,7 +94,7 @@ const getCache = (req, res) => {
 };
 app.get('/api/restaurants/:id', getCache);
 server.timeout = 0;
-server.keepAliveTimeout=745456464586;
+//server.keepAliveTimeout=745456464586;
 server.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
 })
