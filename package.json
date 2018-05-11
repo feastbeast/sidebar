@@ -13,7 +13,7 @@
     "docker": "npm run build:prod && npm run seed & npm run start"
   },
   "keywords": [],
-  "author": "pooja-kodavanti",
+  "author": "Yogita",
   "license": "ISC",
   "dependencies": {
     "ajv": "^6.4.0",

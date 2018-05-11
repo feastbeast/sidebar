@@ -7,7 +7,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 module.exports = {
   plugins: [
     new webpack.DefinePlugin({
-      BASE_URL: JSON.stringify('http://localhost:3001'),
+      BASE_URL: JSON.stringify('http://localhost:3010'),
     })
   ],
   entry: `${SRC_DIR}/index.jsx`,
