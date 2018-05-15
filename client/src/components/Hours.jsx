@@ -60,5 +60,4 @@ export default class Hours extends React.Component {
     }
   }
 }
-window.Hours = Hours;
 

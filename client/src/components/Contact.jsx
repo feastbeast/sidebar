@@ -56,4 +56,4 @@ export default class Contact extends React.Component {
   }
 }
 
-window.Contact = Contact;
+//window.Contact = Contact;

@@ -11,4 +11,3 @@ const Menu = ({menuUrl}) => {
 }
 
 export default Menu;
-window.Menu = Menu;

@@ -6,7 +6,7 @@ import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
 import GMap from './GMap.jsx';
 const axios = require('axios');
-import '../../dist/style.css';
+//import '../../dist/sidebar.css';
 
 
 export default class Sidebar extends React.Component {
@@ -21,12 +21,15 @@ export default class Sidebar extends React.Component {
     this.getPlace = this.getPlace.bind(this);
   };
   componentDidMount() {
-    this.getPlace();
+    if (typeof(window) !== 'undefined') {
+      this.getPlace();
+    }
   };
 
   getPlace() {
     let context = this;
-    let id = window.location.href.split('/')[4];
+    const id = this.props.restaurantId;
+    //let id = window.location.href.split('/')[4];
     axios.get(`${BASE_URL}/api/restaurants/${id}`)
     .then((res) => {
       this.setState({
@@ -75,7 +78,4 @@ export default class Sidebar extends React.Component {
   }
 }
 
-
-
-window.Sidebar = Sidebar;
 

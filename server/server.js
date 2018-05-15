@@ -74,6 +74,7 @@ const getRestaurant = (req, res) => {
       client.setex(id, 3600, JSON.stringify(result));
       res.status(200).send(result);
       res.flush();
+      res.end();
     })
     .catch((error) => {
       res.status(400).send(error);
