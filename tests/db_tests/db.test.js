@@ -2,7 +2,6 @@ const db = require('../../database/index.js');
 
 let place_id = '2';
 
-
 test('the response data contains an array for the place hours', () => {
   expect.assertions(1);
   return db.findOne({'id': place_id}).then((data) => {

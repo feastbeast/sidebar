@@ -4,6 +4,8 @@ const path = require('path');
 const pgp = require('pg-promise')();
 const redis = require('redis');
 const fs = require('fs');
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
 const port = process.env.PORT || 3010;
 http.globalAgent.maxSockets = Infinity;
 http.globalAgent.keepAlive = true;
@@ -25,11 +27,13 @@ client.on('error', () => {
 });
 
 const requestHandler = function (req, res){
+  res.setHeader('Access-Control-Allow-Origin', '*');
 	var num = req.url.split('/')[2];
 	if(Number(num)){
 		fs.readFile(path.join(__dirname, '../client/dist/index.html'), 'utf8', function(err, data){
           if (err){
           	//console.log(err)
+            
           	res.writeHead(400);
           	res.end(err);
           }else{
@@ -40,13 +44,22 @@ const requestHandler = function (req, res){
     }   
     if (req.url.endsWith('.css')) { 
       //console.log(req.url);	
-      const css = fs.createReadStream(path.join(__dirname, '../client/dist/style.css'), 'utf8');
+      const css = fs.createReadStream(path.join(__dirname, '../client/dist/sidebar.css'), 'utf8');
+      
       res.writeHead(200, {'Content-Type': 'text/css'});
       css.pipe(res);
     }   
-    if (req.url.endsWith('.js')) { 
+    if (req.url.endsWith('sidebar.js')) { 
       //console.log(req.url);	
-      const bundle = fs.createReadStream(path.join(__dirname, '../client/dist/bundle.js'), 'utf8');
+      const bundle = fs.createReadStream(path.join(__dirname, '../client/dist/sidebar.js'), 'utf8');
+      
+      res.writeHead(200, {'Content-Type': 'text/javascript'});
+      bundle.pipe(res);
+    } 
+    if (req.url.endsWith('sidebar-server.js')) { 
+      //console.log(req.url); 
+      const bundle = fs.createReadStream(path.join(__dirname, '../client/dist/sidebar-server.js'), 'utf8');
+      
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       bundle.pipe(res);
     } 
@@ -58,7 +71,8 @@ const requestHandler = function (req, res){
       client.get(id, (err, result) => {
         if (result) {
           //console.log("cached");
-          res.writeHead(200); 
+          res.writeHead(200);
+          
           res.end(result);
         } else  {
               const query = {
@@ -70,6 +84,7 @@ const requestHandler = function (req, res){
               db.one(query)
               .then((result) => {
                 //console.log("new")
+                  
                   res.writeHead(200); 
                   res.end(JSON.stringify(result));  
                   client.setex(id, 3600, JSON.stringify(result));
@@ -82,19 +97,30 @@ const requestHandler = function (req, res){
         }
       });
 
-    	
-
-
-
     }    
              
 }
 
-const server = http.createServer(requestHandler)
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-server.listen(port, (err) => {
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+
+  http.createServer(requestHandler).listen(port, (err) => {
   if (err) {
     return console.log('something bad happened', err)
   }
   console.log(`server is listening on ${port}`)
 })
+  
+  console.log(`Worker ${process.pid} started`);
+}
+

@@ -11,4 +11,4 @@ const Booking = (props) => {
 }
 
 export default Booking;
-window.Booking = Booking;
+//window.Booking = Booking;

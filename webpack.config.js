@@ -4,17 +4,13 @@ const path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
-module.exports = {
+const common = {
   plugins: [
     new webpack.DefinePlugin({
-      BASE_URL: JSON.stringify('http://localhost:3010'),
+      BASE_URL: JSON.stringify('http://localhost:3010')
     })
   ],
-  entry: `${SRC_DIR}/index.jsx`,
-  output: {
-    filename: 'bundle.js',
-    path: DIST_DIR
-  },
+  
   module : {
     loaders : [
       {
@@ -25,14 +21,37 @@ module.exports = {
           presets: ['react', 'es2015']
         }
       },
-      {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
-      }
+      // {
+      //   test: /\.css$/,
+      //   use: [ 'style-loader', 'css-loader' ]
+      // }
     ]
   },
-  resolve: { 
-    alias: { 
-      'react': path.resolve(__dirname, 'node_modules', 'react') 
-  } }
+  // resolve: { 
+  //   alias: { 
+  //     'react': path.resolve(__dirname, 'node_modules', 'react') 
+  // } }
 };
+
+const client = {
+  entry: `${SRC_DIR}/client.js`,
+  output: {
+    filename: 'sidebar.js',
+    path: DIST_DIR
+  }
+};  
+
+const server = {
+  target: 'node',
+  entry: `${SRC_DIR}/server.js`,
+  output: {
+    filename: 'sidebar-server.js',
+    path: DIST_DIR,
+    libraryTarget: 'commonjs-module'
+  }
+}; 
+
+module.exports = [
+  Object.assign({}, common, client),
+  Object.assign({}, common, server)
+];
