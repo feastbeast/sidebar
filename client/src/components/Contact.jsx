@@ -6,8 +6,9 @@ export default class Contact extends React.Component {
     super(props);
   };
 
-  render() {
 
+  render() {
+    
     let tel = `tel:${this.props.phone}`;
     
     let store = this.props.name.split(' ').join('+');

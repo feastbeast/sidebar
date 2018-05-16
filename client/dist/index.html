@@ -17,11 +17,13 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
   <script src="sidebar.js"></script>
-  <script>
+  <script>if(typeof window !== 'undefined') {
     ReactDOM.render(
-      React.createElement(Sidebar, {restaurantId: window.location.href.split('/restaurants/')[1]}   ),
+      React.createElement(Sidebar, {restaurantId: window.location.href.split('/restaurants/')[1], isModal: true}  ),
       document.getElementById('Sidebar')
     );
+}
+    
   </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
 import GMap from './GMap.jsx';
 const axios = require('axios');
+import {Icon, Modal} from 'react-materialize';
 //import '../../dist/sidebar.css';
 
 
@@ -14,17 +15,22 @@ export default class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      place: {},
-      isLoaded: false
+      place: {hours: [ "Monday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM", "Tuesday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM", "Wednesday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM", "Thursday: 11:30 AM – 2:30 PM 5:30 – 9:30 PM", "Friday: 11:30 AM – 9:30 PM", "Saturday: 11:30 AM – 9:30 PM", "Sunday: 11:30 AM – 9:30 PM" ], address: "", phone: "", website: "", location: "", id: 1, name: "", url: "", menu_url: "", coordslat: "", coordslng: ""},
+      isLoaded: true,
+      isModal:false
+
     };
 
     this.getPlace = this.getPlace.bind(this);
   };
+
   componentDidMount() {
     if (typeof(window) !== 'undefined') {
+      this.setState({isModal: true})
       this.getPlace();
     }
   };
+  
 
   getPlace() {
     let context = this;
@@ -55,7 +61,8 @@ export default class Sidebar extends React.Component {
             <div className="greyBar"></div>
             <div className="inSidebar">
               <Hours hours={hours}/>
-              <Contact
+              {this.state.isModal && 
+                <Contact
                 address={address} 
                 phone={phone}
                 website={url}
@@ -64,6 +71,8 @@ export default class Sidebar extends React.Component {
                 id={id}
                 name={name}
               />
+              }
+              
               <GMap 
                 location={location}
                 id={id}

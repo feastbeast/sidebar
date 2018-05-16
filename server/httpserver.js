@@ -63,6 +63,7 @@ const requestHandler = function (req, res){
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       bundle.pipe(res);
     } 
+   
     if(req.url.startsWith('/api')){
     	
     	var id = Number(req.url.split("/")[3]);
