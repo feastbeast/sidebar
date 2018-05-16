@@ -13,7 +13,7 @@ http.globalAgent.keepAlive = true;
 http.globalAgent.maxFreeSockets = Infinity;
 const app = express();
 app.disable('etag').disable('x-powred-by');
-var server = http.createServer(app); 
+const server = http.createServer(app);
 const redis = require('redis');
 
 const client = redis.createClient();
@@ -49,9 +49,9 @@ app.use('/restaurants', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/restaurants/:id', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  //res.end();
+  // res.end();
 });
-//MongoDB
+// MongoDB
 // app.get('/api/restaurants/:id', function(req, res) {
 //   let q = Places.findOne({id: req.params.id});
 
@@ -84,10 +84,10 @@ const getCache = (req, res) => {
   const id = req.params.id;
   client.get(id, (err, result) => {
     if (result) {
-      //console.log(`cached ${result}`);
+      // console.log(`cached ${result}`);
       res.send(result);
       res.flush();
-      //res.end();
+      // res.end();
     } else {
       getRestaurant(req, res);
     }
@@ -95,9 +95,8 @@ const getCache = (req, res) => {
 };
 app.get('/api/restaurants/:id', getCache);
 server.timeout = 0;
-//server.keepAliveTimeout=745456464586;
+// server.keepAliveTimeout=745456464586;
 server.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
-})
-
+});
 
