@@ -70,7 +70,7 @@ export default class Sidebar extends React.Component {
                 lng={coordslng}
                 id={id}
                 name={name}
-              />
+                />
               }
               
               <GMap 
