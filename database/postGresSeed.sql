@@ -1,6 +1,7 @@
 -- psql -U yogitasheth apateezside -f /Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/postGresSeed.sql
+CREATE DATABASE apateez IF NOT EXISTS;
 
-\CONNECT apateezside;
+\CONNECT apateez;
 
 DROP TABLE IF EXISTS apateezside;
 
@@ -18,5 +19,6 @@ CREATE TABLE apateezside (
     PRIMARY KEY ("id")
 );
 
-COPY apateezside
-FROM '/Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/tenMillionList.csv' DELIMITER '|' csv;
+-- /COPY apateezside
+-- FROM '/Users/yogitasheth/desktop/feastbeastsidebar/sidebar/database/tenMillionList.csv' DELIMITER '|' csv;
+\COPY apateezside FROM './tenMillionList.csv' DELIMITER '|' csv

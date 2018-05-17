@@ -90,5 +90,4 @@
 
 // module.exports = getFullData;
 
-// mongoimport --jsonArray -d apateez-sidebar -c places --file millionRecord.json --num
-// InsertionWorkers 8
+// mongoimport --jsonArray -d apateez-sidebar -c places --file millionRecord.json --numInsertionWorkers 8

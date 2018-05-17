@@ -24,11 +24,18 @@ client.on('ready', () => {
 client.on('error', () => {
   console.log('Error in Redis');
 });
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3010;
+// const connectionObj = {
+//   user: 'yogitasheth',
+//   host: 'localhost',
+//   database: 'apateezside',
+//   port: 5432,
+// };
 const connectionObj = {
-  user: 'yogitasheth',
-  host: 'localhost',
-  database: 'apateezside',
+  user: 'pguser',
+  host: '52.36.162.25',
+  database: 'apateez',
+  password: 'pguser',
   port: 5432,
 };
 const db = pgp(connectionObj);

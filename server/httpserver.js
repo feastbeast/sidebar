@@ -7,18 +7,19 @@ const fs = require('fs');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
-const port = process.env.PORT || 3010;
+const port = process.env.PORT || 3001;
 http.globalAgent.maxSockets = Infinity;
 http.globalAgent.keepAlive = true;
 const connectionObj = {
-  user: 'yogitasheth',
-  host: 'localhost',
-  database: 'apateezside',
+  user: 'pguser',
+  host: '52.36.162.25',
+  database: 'apateez',
+  password: 'pguser',
   port: 5432,
 };
 const db = pgp(connectionObj);
 
-const client = redis.createClient();
+const client = redis.createClient({host: '35.166.130.228', port: 6379});
 client.on('ready', () => {
   console.log('Redis is ready');
 });
@@ -63,6 +64,13 @@ const requestHandler = function (req, res) {
 
     res.writeHead(200, { 'Content-Type': 'text/javascript' });
     bundle.pipe(res);
+  }
+if (req.url.endsWith('loaderio-651be3344076182af0eb7725f85ba328/')) {
+    // console.log(req.url);
+    //const bundle = fs.createReadStream(path.join(__dirname, '../client/dist/sidebar-server.js'), 'utf8');
+
+    res.writeHead(200, { 'Content-Type': 'text/javascript' });
+    res.end('loaderio-651be3344076182af0eb7725f85ba328');
   }
 
   if (req.url.startsWith('/api')) {

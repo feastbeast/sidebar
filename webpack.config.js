@@ -7,7 +7,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 const common = {
   plugins: [
     new webpack.DefinePlugin({
-      BASE_URL: JSON.stringify('http://localhost:3010')
+      BASE_URL: JSON.stringify('http://54.245.78.41:3001')
     })
   ],
   
